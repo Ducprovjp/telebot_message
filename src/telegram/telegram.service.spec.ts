@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from '@nestjs/config';
 import { TelegramService } from './telegram.service';
+import { MessageHandlerService } from '../shared/message-handler/message-handler.service';
 
 describe('TelegramService', () => {
   let service: TelegramService;
@@ -16,11 +17,14 @@ describe('TelegramService', () => {
               if (key === 'TELEGRAM_BOT_TOKEN') {
                 return 'test-token';
               }
-              if (key === 'TELEGRAM_DEFAULT_REPLY') {
-                return 'Test reply';
-              }
               return undefined;
             },
+          },
+        },
+        {
+          provide: MessageHandlerService,
+          useValue: {
+            handleMessage: () => 'test-reply',
           },
         },
       ],
