@@ -1,4 +1,4 @@
-<p align="center">
+﻿<p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
@@ -30,6 +30,77 @@
 ```bash
 $ npm install
 ```
+
+## Discord bot setup
+
+### 1) Tao bot va lay token
+- Vao https://discord.com/developers/applications -> New Application.
+- Vao tab **Bot** -> Add Bot -> **Reset Token** va copy token.
+- Bat **MESSAGE CONTENT INTENT** (Privileged Gateway Intents) de doc noi dung tin nhan.
+
+### 2) Moi bot vao server
+- Vao **OAuth2 -> URL Generator**.
+- Chon **SCOPES**: `bot`.
+- Chon **BOT PERMISSIONS**: `Send Messages`, `Read Message History`, `View Channels`.
+- Copy URL, mo va chon server de moi bot vao.
+
+### 3) Cau hinh bien moi truong
+Tao `.env` (hoac chinh `.env` hien co):
+
+```bash
+DISCORD_BOT_TOKEN=YOUR_DISCORD_BOT_TOKEN
+```
+
+Neu dung proxy mang cong ty:
+
+```bash
+DISCORD_PROXY_URL=http://user:pass@proxy.company:8080
+# hoac
+HTTPS_PROXY=http://proxy.company:8080
+```
+
+### 4) Chay bot
+
+```bash
+$ npm run start:dev
+```
+
+Log mong doi:
+- `Logging in to Discord...`
+- `Logged in as <bot_tag>`
+
+### Luu y
+- Khong commit token vao git.
+- Neu mang cong ty chan Discord Gateway, hay dung VPN/1.1.1.1 hoac deploy bot len VPS/cloud.
+
+## Telegram bot setup
+
+### 1) Tao bot va lay token
+- Vao Telegram, tim **@BotFather** -> /newbot -> tao bot.
+- Copy token ma BotFather tra ve.
+
+### 2) Them bot vao group
+- Tao group va add bot vao group.
+- Tat privacy mode de bot nhan tin nhan group: @BotFather -> /setprivacy -> chon bot -> Disable.
+- Hoac set bot lam admin (de doc tin nhan group).
+
+### 3) Cau hinh bien moi truong
+Tao `.env` (hoac chinh `.env` hien co):
+
+```bash
+TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
+DEFAULT_REPLY=Hello from the bot!
+```
+
+### 4) Chay bot
+
+```bash
+$ npm run start:dev
+```
+
+Log mong doi:
+- `Starting Telegram bot...`
+- `Telegram bot started`
 
 ## Compile and run the project
 
@@ -89,7 +160,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
+- Author - [Kamil MyÅ›liwiec](https://twitter.com/kammysliwiec)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
 
